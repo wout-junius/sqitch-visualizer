@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    </script>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <pre class="mermaid">
+      graph LR
+		setup_db[setup_db]
+data_modules.schema[data_modules.schema]
+mobile.schema[mobile.schema]
+mex.schemas[mex.schemas]
+metrics.dim_tables[metrics.dim_tables]
+metrics.dim_tables.full_text_search[metrics.dim_tables.full_text_search]
+metrics.dim_pos.clustered[metrics.dim_pos.clustered]
+pipeline_state.tables[pipeline_state.tables]
+tiles.tables[tiles.tables]
+metrics.mfs[metrics.mfs]
+metrics.marketing[metrics.marketing]
+metrics.airtime[metrics.airtime]
+i18n.schema[i18n.schema]
+metrics_sprint_94[metrics_sprint_94]
+metrics_sprint_95[metrics_sprint_95]
+site_metrics_with_geo_places[site_metrics_with_geo_places]
+metrics_sprint_96[metrics_sprint_96]
+data_modules.remove.schema[data_modules.remove.schema]
+metrics.network[metrics.network]
+metrics_sprint_99[metrics_sprint_99]
+metrics_sprint_100[metrics_sprint_100]
+remove_id_mapping_sprint_100[remove_id_mapping_sprint_100]
+add_fake_sim_sellout_count_sprint_102[add_fake_sim_sellout_count_sprint_102]
+add_airtime_metrics_per_distributor_102[add_airtime_metrics_per_distributor_102]
+airtime_status_default_value_103[airtime_status_default_value_103]
+remove_pos_tech_id_to_ext_id[remove_pos_tech_id_to_ext_id]
+add_fake_sim_sellout_count_pos_distributor_metrics_104[add_fake_sim_sellout_count_pos_distributor_metrics_104]
+more_status_default_value_104[more_status_default_value_104]
+dim_distributors_105[dim_distributors_105]
+metrics.dim_tables.full_text_search_v2[metrics.dim_tables.full_text_search_v2]
+dim_id_mapping_113[dim_id_mapping_113]
+dimensions.initiatives[dimensions.initiatives]
+mobile.type_field_to_text[mobile.type_field_to_text]
+metrics.dim_pos_with_msisdns[metrics.dim_pos_with_msisdns]
+alter_initiatives[alter_initiatives]
+add_custom_metrics_sprint_124[add_custom_metrics_sprint_124]
+network_2g_default_site_status[network_2g_default_site_status]
+metrics.data_quality[metrics.data_quality]
+grafana.schema[grafana.schema]
+grafana.data_quality[grafana.data_quality]
+add_pos_channel_segments_sprint_127[add_pos_channel_segments_sprint_127]
+remove_pipeline_tables_schema[remove_pipeline_tables_schema]
+drop_tiles_schema[drop_tiles_schema]
+dim_bundles_137[dim_bundles_137]
+dim_channels_137[dim_channels_137]
+metrics_geo_bundle_offer_137[metrics_geo_bundle_offer_137]
+metrics_geo_channel_offer_137[metrics_geo_channel_offer_137]
+metrics_site_bundle_offer_137[metrics_site_bundle_offer_137]
+metrics_site_channel_offer_137[metrics_site_channel_offer_137]
+metrics_geo_channel_marketing_138[metrics_geo_channel_marketing_138]
+metrics_site_channel_marketing_138[metrics_site_channel_marketing_138]
+dimensions.distributors[dimensions.distributors]
+alter_bundle_groups[alter_bundle_groups]
+add_mobile_state_139[add_mobile_state_139]
+add_total_revenue_marketing[add_total_revenue_marketing]
+add_activity_penetration_kpi_mfs[add_activity_penetration_kpi_mfs]
+add_filter_to_initiatives[add_filter_to_initiatives]
+mobile.tasks[mobile.tasks]
+mobile.field_agents[mobile.field_agents]
+mobile.survey_templates[mobile.survey_templates]
+add_poi_id[add_poi_id]
+add_non_nullable_constraints[add_non_nullable_constraints]
+dim_pos_with_agents[dim_pos_with_agents]
+alter_marketing_activity_column_type[alter_marketing_activity_column_type]
+mobile.alter_tasks[mobile.alter_tasks]
+mobile.add_indexes[mobile.add_indexes]
+mobile.tasks_timestamp[mobile.tasks_timestamp]
+add_population_column[add_population_column]
+add_site_count[add_site_count]
+add_unaccent_extension[add_unaccent_extension]
+add_poi_tables[add_poi_tables]
+create_poi_views[create_poi_views]
+update_data_broker_permissions[update_data_broker_permissions]
+add_ct_snd_config_view[add_ct_snd_config_view]
+poi_to_tegola_field[poi_to_tegola_field]
+initiatives_history[initiatives_history]
+update_upsert_remote_entity[update_upsert_remote_entity]
+add_distributor_poi_mapping[add_distributor_poi_mapping]
+add_active_1_day_geo_airtime[add_active_1_day_geo_airtime]
+market_share_v2[market_share_v2]
+dim_teams[dim_teams]
+dim_team_field_agents[dim_team_field_agents]
+fix_dim_poi_to_tegola_fields[fix_dim_poi_to_tegola_fields]
+metric_targets[metric_targets]
+add_evd_through_mfs_to_airtime[add_evd_through_mfs_to_airtime]
+add_evd_through_mfs_targets[add_evd_through_mfs_targets]
+add_geo_place_network_targets_table[add_geo_place_network_targets_table]
+add_geo_place_offer_targets_table[add_geo_place_offer_targets_table]
+add_bundle_through_mfs_kpis_and_targets_to_airtime[add_bundle_through_mfs_kpis_and_targets_to_airtime]
+add_total_evd_to_airtime[add_total_evd_to_airtime]
+mfs_and_total_stock_in_airtime[mfs_and_total_stock_in_airtime]
+mfs_recurrent_stock_in_airtime[mfs_recurrent_stock_in_airtime]
+update_ct_snd_config_view[update_ct_snd_config_view]
+last_total_evd_transaction_date[last_total_evd_transaction_date]
+total_evd_pos_value[total_evd_pos_value]
+add_localisation_columns_metrics_and_targets[add_localisation_columns_metrics_and_targets]
+bundle_through_evd[bundle_through_evd]
+mfs_distributor_metrics[mfs_distributor_metrics]
+mfs_sub_active_count_periods[mfs_sub_active_count_periods]
+pos_active_mfs_1_day_count[pos_active_mfs_1_day_count]
+hourly_metrics[hourly_metrics]
+new_sim_acquisition_metrics[new_sim_acquisition_metrics]
+pos_confirmed_localisation_count[pos_confirmed_localisation_count]
+add_pos_active_total_evd_1_day[add_pos_active_total_evd_1_day]
+alter_union_tasks_view[alter_union_tasks_view]
+alter_union_poi_view[alter_union_poi_view]
+create_indexes_for_pos_status[create_indexes_for_pos_status]
+add_mfs_kyc_kpi_columns[add_mfs_kyc_kpi_columns]
+pos_localisation_status_default_value[pos_localisation_status_default_value]
+add_mfs_kyt_bill_payment_columns[add_mfs_kyt_bill_payment_columns]
+geo_place_mnp_metrics[geo_place_mnp_metrics]
+mobile.geo_level_in[mobile.geo_level_in]
+dim.geo_level[dim.geo_level]
+add_agent_picture_url[add_agent_picture_url]
+alter_survey_template[alter_survey_template]
+add_survey_questions[add_survey_questions]
+site_airtime_metrics[site_airtime_metrics]
+site_mfs_metrics[site_mfs_metrics]
+add_survey_responses[add_survey_responses]
+update_field_agents_for_sync[update_field_agents_for_sync]
+alter_tasks_due_date[alter_tasks_due_date]
+		setup_db --> data_modules.schema
+setup_db --> mobile.schema
+setup_db --> mex.schemas
+mex.schemas --> metrics.dim_tables
+metrics.dim_tables --> metrics.dim_tables.full_text_search
+metrics.dim_tables --> metrics.dim_pos.clustered
+mex.schemas --> pipeline_state.tables
+metrics.dim_tables --> tiles.tables
+mex.schemas --> metrics.mfs
+mex.schemas --> metrics.marketing
+mex.schemas --> metrics.airtime
+metrics.airtim --> metrics_sprint_94
+metrics_sprint_94 --> metrics_sprint_95
+metrics.marketing --> site_metrics_with_geo_places
+metrics_sprint_9 --> metrics_sprint_96
+mex.schemas --> metrics.network
+metrics.network --> metrics_sprint_99
+metrics_sprint_99 --> metrics_sprint_100
+metrics_sprint_100 --> remove_id_mapping_sprint_100
+remove_id_mapping_sprint_100 --> add_fake_sim_sellout_count_sprint_102
+add_fake_sim_sellout_count_sprint_102 --> add_airtime_metrics_per_distributor_102
+airtime_status_default_value_103 --> remove_pos_tech_id_to_ext_id
+remove_pos_tech_id_to_ext_id --> add_fake_sim_sellout_count_pos_distributor_metrics_104
+remove_pos_tech_id_to_ext_id --> more_status_default_value_104
+more_status_default_value_104 --> dim_distributors_105
+metrics.dim_tables.full_text_search --> metrics.dim_tables.full_text_search_v2
+dim_distributors_105 --> dim_id_mapping_113
+mobile.schema --> mobile.type_field_to_text
+dim_id_mapping_113 --> metrics.dim_pos_with_msisdns
+dimensions.initiatives --> alter_initiatives
+metrics.airtim --> add_custom_metrics_sprint_124
+metrics.networ --> network_2g_default_site_status
+mex.schemas --> metrics.data_quality
+setup_db --> grafana.schema
+grafana.schema --> grafana.data_quality
+metrics.dim_tables --> add_pos_channel_segments_sprint_127
+mex.schema --> remove_pipeline_tables_schema
+tiles.tables --> drop_tiles_schema
+dimensions.initiatives --> dim_bundles_137
+dimensions.initiatives --> dim_channels_137
+mex.schemas --> metrics_geo_bundle_offer_137
+mex.schemas --> metrics_geo_channel_offer_137
+mex.schemas --> metrics_site_bundle_offer_137
+mex.schemas --> metrics_site_channel_offer_137
+mex.schemas --> metrics_geo_channel_marketing_138
+mex.schemas --> metrics_site_channel_marketing_138
+dimensions.initiatives --> dimensions.distributors
+dim_bundles_137 --> alter_bundle_groups
+mobile.schema --> add_mobile_state_139
+metrics.marketing --> add_total_revenue_marketing
+metrics.mfs --> add_activity_penetration_kpi_mfs
+dimensions.initiatives --> add_filter_to_initiatives
+add_mobile_state_139 --> mobile.tasks
+add_mobile_state_139 --> mobile.field_agents
+add_mobile_state_139 --> mobile.survey_templates
+add_mobile_state_139 --> add_poi_id
+metrics.airtime --> add_non_nullable_constraints
+mobile.field_agents --> dim_pos_with_agents
+metrics.marketing --> alter_marketing_activity_column_type
+mobile.tasks --> mobile.alter_tasks
+mobile.schema --> mobile.add_indexes
+mobile.alter_tasks --> mobile.tasks_timestamp
+metrics.dim_table --> add_population_column
+metrics.dim_tables --> add_site_count
+mobile.schem --> add_poi_tables
+add_poi_tables --> create_poi_views
+create_poi_views --> update_data_broker_permissions
+create_poi_view --> poi_to_tegola_field
+alter_initiative --> initiatives_history
+mobile.alter_tasks --> update_upsert_remote_entity
+add_poi_table --> add_distributor_poi_mapping
+dimensions.distributor --> dim_teams
+dim_teams --> dim_team_field_agents
+mobile.tasks_timestamp --> alter_union_tasks_view
+create_poi_views --> alter_union_poi_view
+metrics.mf --> create_indexes_for_pos_status
+mobile.geo_level_in --> dim.geo_level
+mobile.field_agents --> add_agent_picture_url
+mobile.survey_template --> alter_survey_template
+alter_survey_templat --> add_survey_questions
+add_agent_picture_url --> update_field_agents_for_sync
+alter_union_tasks_view --> alter_tasks_due_date
+    </pre>
+  </body>
+</html>
