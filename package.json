@@ -1,8 +1,9 @@
 {
-  "name": "sqitch-visualizer",
-  "displayName": "sqitch visualizer",
+  "name": "sqitch-plan-visualizer",
+  "displayName": "Sqitch plan visualizer",
   "description": "Visualize sqitch.plan file in a nice visual graph",
   "version": "0.0.1",
+  "publisher": "WoutJunius",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -14,8 +15,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "sqitch-visualizer.helloWorld",
-        "title": "Hello World"
+        "command": "sqitch-visualizer.loadSqitchPlanGraph",
+        "title": "Load Sqitch Plan Graph"
       }
     ]
   },

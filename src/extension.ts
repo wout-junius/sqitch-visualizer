@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "sqitch-visualizer" is now active!');
 
-	let disposable = vscode.commands.registerCommand('sqitch-visualizer.helloWorld', () => {
+	let disposable = vscode.commands.registerCommand('sqitch-visualizer.loadSqitchPlanGraph', () => {
 		// read the current file
 		const editor = vscode.window.activeTextEditor;
 		if (!editor) {
