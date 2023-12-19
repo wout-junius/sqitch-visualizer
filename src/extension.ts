@@ -56,6 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
 		${edges.map(edge => `${edge.from} --> ${edge.to}`).join('\n')}
 		`;
 		
+		console.log(graph);
 		// show the graph in a preview
 
 		const panel = vscode.window.createWebviewPanel(
@@ -74,24 +75,44 @@ export function activate(context: vscode.ExtensionContext) {
 			<meta charset="UTF-8" />
 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			<title>Document</title>
-			<script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+			<script src="https://bumbu.me/svg-pan-zoom/dist/svg-pan-zoom.js"></script>
 			<style>
 			body {
 			  font-family: "Open Sans", sans-serif;
 			}
-			pre {
+			#graphDiv {
 			  background-color: rgb(240, 240, 240, 10);
 			  padding: 20px;
 			  border: 1px solid #ddd;
 			  border-radius: 5px;
+			  height: 90vh;
+			  font-size: 30px !important;
 			}
+			#mySvgId {
+				height: 100%;
+			} 
 		  </style>
 		  </head>
 		  <body>
-			<pre class="mermaid">
-				${graph}
-				</pre>
-				</body>
+		  <div id="graphDiv"></div>
+		  <script type="module">
+		  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+		  mermaid.initialize({ startOnLoad: false });
+		  // Example of using the render function
+		  const drawDiagram = async function () {
+			const element = document.querySelector('#graphDiv');
+			const graphDefinition = \`${graph}\`;
+			const { svg } = await mermaid.render('mySvgId', graphDefinition);
+			element.innerHTML = svg.replace(/[ ]*max-width:[ 0-9\.]*px;/i , '');
+			var panZoomTiger = svgPanZoom('#mySvgId', {
+			  zoomEnabled: true,
+			  controlIconsEnabled: true,
+			  fit: true,
+			  center: true
+			})
+		  };
+		  await drawDiagram();
+		</script>
 			  </html>
 			`;
 
