@@ -1,74 +1,87 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log('Congratulations, your extension "sqitch-visualizer" is now active!');
+  console.log(
+    'Congratulations, your extension "sqitch-visualizer" is now active!'
+  );
 
-	let disposable = vscode.commands.registerCommand('sqitch-visualizer.loadSqitchPlanGraph', () => {
-		// read the current file
-		const editor = vscode.window.activeTextEditor;
-		if (!editor) {
-			return; // No open text editor
-		}
-		const document = editor.document;
-		if(document.fileName.indexOf('.plan') === -1) {
-			return vscode.window.showInformationMessage('This is not a sqitch plan file');
-		}
-		const text = document.getText();
+  let disposable = vscode.commands.registerCommand(
+    "sqitch-visualizer.loadSqitchPlanGraph",
+    () => {
+      // read the current file
+      const editor = vscode.window.activeTextEditor;
+      if (!editor) {
+        return; // No open text editor
+      }
+      const document = editor.document;
+      if (document.fileName.indexOf(".plan") === -1) {
+        return vscode.window.showInformationMessage(
+          "This is not a sqitch plan file"
+        );
+      }
+      const text = document.getText();
 
-		// parse the file
-		const lines = text.split('\n').filter(line => line.trim().length > 0 && !line.startsWith('%') && !line.startsWith('@'));
-		const changes = lines.map((line) => {
-			const parts = line.split(' ');
-			return {
-				name: parts.shift(),
-				requires: parts[0].startsWith('[') ? getAllRequires(parts) : [],
-				//get the description of all the parts that are after the # sybol added whit space in 1 string and remove the \r
-				description: parts.slice(parts.indexOf('#') + 1).join(' ').replace('\r', '')
-			};
-		});
-		
-		// create the graph in markdown using mermaid
+      // parse the file
+      const lines = text
+        .split("\n")
+        .filter(
+          (line) =>
+            line.trim().length > 0 &&
+            !line.startsWith("%") &&
+            !line.startsWith("@")
+        );
+      const changes = lines.map((line) => {
+        const parts = line.split(" ");
+        return {
+          name: parts.shift(),
+          requires: parts[0].startsWith("[") ? getAllRequires(parts) : [],
+          //get the description of all the parts that are after the # sybol added whit space in 1 string and remove the \r
+          description: parts
+            .slice(parts.indexOf("#") + 1)
+            .join(" ")
+            .replace("\r", ""),
+        };
+      });
 
-		const nodes = changes.map(change => {
-			return {
-				id: change.name,
-				label: change.name,
-				title: change.description
-			};
-		});
+      // create the graph in markdown using mermaid
 
-		const edges: {
-			from: string;
-			to: string | undefined;
-		}[] = [];
+      const nodes = changes.map((change) => {
+        return {
+          id: change.name,
+          label: change.name,
+          title: change.description,
+        };
+      });
 
-		changes.forEach(change => {
-			change.requires.forEach(require => {
-				edges.push({
-					from: require,
-					to: change.name
-				});
-			});
-		});
+      const edges: {
+        from: string;
+        to: string | undefined;
+      }[] = [];
 
-		const graph = `graph LR
-		${nodes.map(node => `${node.id}[${node.label}]`).join('\n')}
-		${edges.map(edge => `${edge.from} --> ${edge.to}`).join('\n')}
+      changes.forEach((change) => {
+        change.requires.forEach((require) => {
+          edges.push({
+            from: require,
+            to: change.name,
+          });
+        });
+      });
+      const graph = `graph LR
+		${nodes.map((node) => `${node.id}[${node.label}]`).join("\n")}
+		${edges.map((edge) => `${edge.from} --> ${edge.to}`).join("\n")}
 		`;
-		
-		console.log(graph);
-		// show the graph in a preview
+      // show the graph in a preview
 
-		const panel = vscode.window.createWebviewPanel(
-			'sqitchVisualizer',
-			'Sqitch Visualizer',
-			vscode.ViewColumn.One,
-			{}
-		);
-		panel.webview.options = {
-			enableScripts: true,
-		};
-		panel.webview.html = `
+      const panel = vscode.window.createWebviewPanel(
+        "sqitchVisualizer",
+        "Sqitch Visualizer",
+        vscode.ViewColumn.One,
+        {}
+      );
+      panel.webview.options = {
+        enableScripts: true,
+      };
+      panel.webview.html = `
 		<!DOCTYPE html>
 		<html lang="en">
 		  <head>
@@ -115,33 +128,26 @@ export function activate(context: vscode.ExtensionContext) {
 		</script>
 			  </html>
 			`;
+    }
+  );
 
-
-	});
-
-
-	context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable);
 }
-
-// This method is called when your extension is deactivated
 export function deactivate() {}
 
-const getAllRequires = (parts:string[]) => {
-	const requires = [];
-	let isRequired = false;
-	for(let i = 0; i < parts.length; i++) {
-		if(parts[i].startsWith('[')) {
-			isRequired = true;
-			requires.push(parts[i].substring(1, parts[i].length - 1));
-			break;
-		}
-		if(parts[i].endsWith(']')) {
-			isRequired = false;
-			requires.push(parts[i].substring(0, parts[i].length - 1));
-			break;
-		}
-		if(isRequired) requires.push(parts[i]);
-
-	}
-	return requires;
-}
+const getAllRequires = (parts: string[]) => {
+  const requires = [];
+  const isLastRequired = (part: string) => part.endsWith("]");
+  for (let i = 0; i < parts.length; i++) {
+    if (isLastRequired(parts[i])) {
+      requires.push(parts[i].replace("[", "").replace("]", ""));
+      break;
+    }
+    if (parts[i].startsWith("[")) {
+      requires.push(parts[i].replace("[", "").replace("]", ""));
+      continue;
+    }
+    requires.push(parts[i]);
+  }
+  return requires;
+};
