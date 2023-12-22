@@ -1,0 +1,7 @@
+%syntax-version=1.0.0
+%project=test
+
+test1 2023-11-02T12:39:57Z Linux User,,, <test@Test> # Test
+test2 [test1] 2023-10-25T11:43:00Z Linux User,,, <test@Test> # Test
+test3 [test2 test1] 2023-10-25T13:37:31Z Linux User,,, <test@Test> # Test
+test4 [test2 test1 test3] 2023-11-20T09:43:13Z Linux User,,, <test@Test> # test4
