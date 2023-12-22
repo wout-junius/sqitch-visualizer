@@ -1,13 +1,21 @@
-# Sqitch plan visualizer
+# Sqitch Visualizer
 
-Your Extension Name is a Visual Studio Code extension that...
+This Visual Studio Code extension provides a visualization tool for Sqitch changes.
 
-## Commands
+## Features
 
-This extension contributes the following commands:
+- Visualize Sqitch changes as a directed graph.
+- Each node in the graph represents a Sqitch change.
+- Each edge represents a dependency between changes.
 
-- `Load Sqitch Plan Graph`: Read the open sqitch plan file and generate a graph
+## Usage
 
-## Installation
+Open the Sqitch Visualizer from the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on macOS) and select "Load Sqitch Plan Graph".
 
-You can install this extension from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/VSCode).
+## Contributing
+
+Contributions are welcome! Please read the contributing guidelines before getting started.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
